@@ -73,4 +73,13 @@ export class CreateUser extends React.PureComponent {
   }
 }
 
-export default styled(CreateUser)``;
+export default styled(CreateUser)`
+  text-align: right;
+  margin-bottom: 24px;
+
+  button {
+    color: #fff;
+    border-color: #fff;
+    background-color: #4CAF50 !important;
+  }
+`;

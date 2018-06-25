@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mutation } from "react-apollo";
+import styled from 'styled-components';
+import { Mutation } from 'react-apollo';
 
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,7 +8,7 @@ import UserDetailsDialog from '../shared/user-details-dialog';
 
 import { UPDATE_USER } from '../mutations';
 
-export default class UpdateUser extends React.PureComponent {
+export class UpdateUser extends React.PureComponent {
   state = { isOpen: false };
 
   renderEditUserDialog = () =>
@@ -40,7 +41,10 @@ export default class UpdateUser extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        <IconButton onClick={this.toggleDialog}>
+        <IconButton
+          onClick={this.toggleDialog}
+          className={this.props.className}
+        >
           <Icon>create</Icon>
         </IconButton>
         {this.state.isOpen && this.renderEditUserDialog()}
@@ -48,3 +52,7 @@ export default class UpdateUser extends React.PureComponent {
     );
   }
 }
+
+export default styled(UpdateUser)`
+  color: #607D8B !important;
+`

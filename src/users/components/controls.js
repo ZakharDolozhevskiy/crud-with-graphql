@@ -9,9 +9,12 @@ export class Controls extends React.PureComponent {
   render() {
     return (
       <header className={this.props.className}>
-        <CreateUser showActive={this.props.showActive}/>
+        <CreateUser
+          showActive={this.props.showActive}
+        />
         <FormControlLabel
           label="Show only active users"
+          classes={{ label: 'active-user-label' }}
           control={
             <Switch
               color="primary"
@@ -25,5 +28,7 @@ export class Controls extends React.PureComponent {
 }
 
 export default styled(Controls)`
-
+  .active-user-label {
+    font-size: 16px !important;
+  }
 `;

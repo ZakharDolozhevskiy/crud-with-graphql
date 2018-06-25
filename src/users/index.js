@@ -25,6 +25,7 @@ export class Users extends React.Component {
         <ListItemSecondaryAction>
           <UpdateUser user={user} />
           <DeleteUser
+            className="delete-btn"
             userId={user.id}
             showActive={this.state.showActive}
           />
@@ -44,9 +45,9 @@ export class Users extends React.Component {
         />
         <Query query={GET_USERS} variables={{ active: this.state.showActive }}>
           {payload =>
-            !payload.loading
+            payload.loading
               ? <div className="spinner-container">
-                  <RingLoader loading={!payload.loading} color='#2196f3' />
+                  <RingLoader loading={payload.loading} color='#3f51b5' />
                 </div>
               : <List>{this.renderUserListItems(payload.data)}</List>}
         </Query>

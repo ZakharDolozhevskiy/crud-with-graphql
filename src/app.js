@@ -29,7 +29,7 @@ const app = ({ className }) => (
 
 export default styled(app)`
   .app-bar {
-    background-color: #2196f3;
+    background-color: #3f51b5;
     color: #fff;
   }
 

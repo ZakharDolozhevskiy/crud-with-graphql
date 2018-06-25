@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mutation } from "react-apollo";
+import styled from 'styled-components';
+import { Mutation } from 'react-apollo';
 
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { GET_USERS } from '../queries';
 import { DELETE_USER } from '../mutations';
 
-export default class DeleteUser extends React.PureComponent {
+export class DeleteUser extends React.PureComponent {
   callMutation = mutation => () =>
     mutation({
       variables: {
@@ -37,10 +38,17 @@ export default class DeleteUser extends React.PureComponent {
     return (
       <Mutation mutation={DELETE_USER} update={this.updateQuery}>
         {mutation => (
-          <IconButton onClick={this.callMutation(mutation)}>
+          <IconButton
+            className={this.props.className}
+            onClick={this.callMutation(mutation)}
+          >
             <Icon>delete</Icon>
           </IconButton>)}
       </Mutation>
     );
   }
 }
+
+export default styled(DeleteUser)`
+  color: #607D8B !important;
+`
