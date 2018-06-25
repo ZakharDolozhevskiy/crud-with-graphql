@@ -1,25 +1,43 @@
-import React, { Component } from 'react';
-import ApolloClient from 'apollo-boost';
+import React from 'react';
+import styled from 'styled-components';
 import { ApolloProvider } from "react-apollo";
-import Users from './components/users';
 
-import logo from './logo.svg';
-import './App.css';
+import Paper from '@material-ui/core/Paper';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
 
-const api = new ApolloClient({
-	uri: 'https://api.graph.cool/relay/v1/cjhriygub1ujp0162c99ieakf'
-});
+import api from './api';
+import UsersList from './users';
 
-const app = () => (
+const app = ({ className }) => (
   <ApolloProvider client={api}>
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Welcome to React</h1>
-      </header>
-      <Users/>
+    <div className={className}>
+      <AppBar position="static" color="default" className="app-bar">
+        <Toolbar>
+          <Typography variant="title" color="inherit">
+            Users
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Paper elevation={4} className="layer">
+        <UsersList/>
+      </Paper>
     </div>
   </ApolloProvider>
 );
 
-export default app;
+export default styled(app)`
+  .app-bar {
+    background-color: #2196f3;
+    color: #fff;
+  }
+
+  .layer {
+    box-sizing: border-box;
+    height: calc(100vh - 64px - 48px);
+    max-width: 800px;
+    margin: 24px;
+    padding: 16px;
+  }
+`;

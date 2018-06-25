@@ -13,9 +13,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-export class UserFormDialog extends React.PureComponent {
+export class UserDetailsDialog extends React.PureComponent {
   constructor(props) {
-    super();
+    super(props);
     this.state = { ...props.data };
   }
 
@@ -31,11 +31,11 @@ export class UserFormDialog extends React.PureComponent {
   onSave = () => this.props.onSave(this.state);
 
   render() {
-    const { open, title, onCancel } = this.props;
-    const { name, createdAt, updatedAt, email, active } = this.state;
+    const { title, onCancel } = this.props;
+    const { createdAt, updatedAt, email, name, active } = this.state;
 
     return (
-      <Dialog open={open} onClose={onCancel}>
+      <Dialog open onClose={onCancel}>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <div className={this.props.className}>
@@ -83,7 +83,7 @@ export class UserFormDialog extends React.PureComponent {
   }
 }
 
-export default styled(UserFormDialog)`
+export default styled(UserDetailsDialog)`
   width: 400px;
   
   & > div {
