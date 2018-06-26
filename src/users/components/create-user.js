@@ -19,9 +19,14 @@ export class CreateUser extends React.PureComponent {
   };
 
   renderCreateUserDialog = () =>
-    <Mutation update={this.updateQuery} mutation={CREATE_USER}>
-      {mutation => (
+    <Mutation
+      mutation={CREATE_USER}
+      update={this.updateQuery}
+      onCompleted={this.toggleDialog}
+    >
+      {(mutation, { error }) => (
         <UserDetailsDialog
+          error={Boolean(error)}
           title="Create new user"
           data={this.defaultUser}
           onCancel={this.toggleDialog}
@@ -38,15 +43,19 @@ export class CreateUser extends React.PureComponent {
         clientMutationId: shortid()
       }
     }});
-
-    this.toggleDialog();
   };
 
   updateQuery = (cache, { data: { createUser: { user } } }) => {
-    const payload = cache.readQuery({
-      query: GET_USERS,
-      variables: { active: this.props.showActive }
-    });
+    let payload;
+
+    try {
+      payload = cache.readQuery({
+        query: GET_USERS,
+        variables: { active: user.active }
+      });
+    } catch (err) {}
+
+    if (!payload) return;
 
     payload.viewer.allUsers.edges =
       payload.viewer.allUsers.edges
@@ -55,7 +64,7 @@ export class CreateUser extends React.PureComponent {
     cache.writeQuery({
       data: payload,
       query: GET_USERS,
-      variables: { active: this.props.showActive }
+      variables: { active: user.active }
     });
   };
 
@@ -74,7 +83,6 @@ export class CreateUser extends React.PureComponent {
 }
 
 export default styled(CreateUser)`
-  text-align: right;
   margin-bottom: 24px;
 
   button {

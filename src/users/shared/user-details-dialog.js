@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import styled from 'styled-components';
 
 import Button from '@material-ui/core/Button';
@@ -10,6 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
@@ -31,7 +33,7 @@ export class UserDetailsDialog extends React.PureComponent {
   onSave = () => this.props.onSave(this.state);
 
   render() {
-    const { title, onCancel } = this.props;
+    const { error, title, onCancel } = this.props;
     const { createdAt, updatedAt, email, name, active } = this.state;
 
     return (
@@ -49,7 +51,7 @@ export class UserDetailsDialog extends React.PureComponent {
                 onChange={this.onNameChange}
               />
             </FormControl>
-            <FormControl>
+            <FormControl error={error}>
               <InputLabel htmlFor="edit-user-email">
                 E-mail
               </InputLabel>
@@ -58,6 +60,7 @@ export class UserDetailsDialog extends React.PureComponent {
                 id="edit-user-email"
                 onChange={this.onEmailChange}
               />
+              {error && <FormHelperText>Email address already in use</FormHelperText>}
             </FormControl>
             <FormControlLabel
               label="Active user"
@@ -69,8 +72,8 @@ export class UserDetailsDialog extends React.PureComponent {
                 />}
             />
             <DialogContentText className="timestamps">
-              {createdAt && <span>Created: {createdAt}</span>}
-              {updatedAt && <span>Updated: {updatedAt}</span>}
+              {createdAt && <span>Created: {moment(createdAt).fromNow()}</span>}
+              {updatedAt && <span>Updated: {moment(updatedAt).fromNow()}</span>}
             </DialogContentText>
           </div>
         </DialogContent>
@@ -92,6 +95,6 @@ export default styled(UserDetailsDialog)`
   }
   
   .timestamps > span {
-    display: inline-block;
+    display: block;
   }
 `;

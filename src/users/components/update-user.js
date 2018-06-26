@@ -12,9 +12,10 @@ export class UpdateUser extends React.PureComponent {
   state = { isOpen: false };
 
   renderEditUserDialog = () =>
-    <Mutation mutation={UPDATE_USER} >
-      {mutation => (
+    <Mutation mutation={UPDATE_USER} onCompleted={this.toggleDialog}>
+      {(mutation, { error }) => (
         <UserDetailsDialog
+          error={Boolean(error)}
           title="Edit user details"
           data={this.props.user}
           onCancel={this.toggleDialog}
@@ -32,8 +33,6 @@ export class UpdateUser extends React.PureComponent {
         clientMutationId: user.id
       }
     }});
-
-    this.toggleDialog();
   };
 
   toggleDialog = () => this.setState({ isOpen: !this.state.isOpen });

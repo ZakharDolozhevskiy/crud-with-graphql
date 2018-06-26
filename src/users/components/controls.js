@@ -9,9 +9,7 @@ export class Controls extends React.PureComponent {
   render() {
     return (
       <header className={this.props.className}>
-        <CreateUser
-          showActive={this.props.showActive}
-        />
+        <CreateUser/>
         <FormControlLabel
           label="Show only active users"
           classes={{ label: 'active-user-label' }}

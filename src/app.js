@@ -29,14 +29,13 @@ const app = ({ className }) => (
 
 export default styled(app)`
   .app-bar {
-    background-color: #3f51b5;
-    color: #fff;
+   background-color: #3f51b5;
+   color: #fff;
   }
 
   .layer {
     box-sizing: border-box;
     height: calc(100vh - 64px - 48px);
-    max-width: 800px;
     margin: 24px;
     padding: 16px;
   }
