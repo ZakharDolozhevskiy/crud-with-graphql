@@ -13,7 +13,7 @@ import DeleteUser from './components/delete-user';
 import UpdateUser from './components/update-user';
 
 import { GET_USERS } from './queries';
-import { getUsersList } from './selectors';
+import { getUsersList } from './helpers';
 
 export class Users extends React.Component {
   state = { showActive: true };

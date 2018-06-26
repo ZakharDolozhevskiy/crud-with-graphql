@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import { Mutation } from "react-apollo";
 
 import Button from '@material-ui/core/Button';
-import UserDetailsDialog from '../shared/user-details-dialog';
+import UserDetailsDialog from './user-dialog';
 
 import { GET_USERS } from '../queries';
 import { CREATE_USER } from '../mutations';
+import { addUserToQuery } from '../helpers';
 
 export class CreateUser extends React.PureComponent {
   state = { isOpen: false };
@@ -55,17 +56,15 @@ export class CreateUser extends React.PureComponent {
       });
     } catch (err) {}
 
-    if (!payload) return;
+    if (payload) {
+      addUserToQuery(payload, user);
 
-    payload.viewer.allUsers.edges =
-      payload.viewer.allUsers.edges
-        .concat({ node: user, __typename: 'UserEdge' });
-
-    cache.writeQuery({
-      data: payload,
-      query: GET_USERS,
-      variables: { active: user.active }
-    });
+      cache.writeQuery({
+        data: payload,
+        query: GET_USERS,
+        variables: { active: user.active }
+      });
+    }
   };
 
   toggleDialog = () => this.setState({ isOpen: !this.state.isOpen });

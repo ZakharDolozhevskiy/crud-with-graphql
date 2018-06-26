@@ -9,6 +9,8 @@ export const UPDATE_USER = gql`
                 name
                 active
                 email
+                createdAt
+                updatedAt
             }
         }
     }

@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import { GET_USERS } from '../queries';
 import { DELETE_USER } from '../mutations';
+import { deleteUserFromQuery } from '../helpers';
 
 export class DeleteUser extends React.PureComponent {
   callMutation = mutation => () =>
@@ -23,9 +24,7 @@ export class DeleteUser extends React.PureComponent {
       variables: { active: this.props.showActive }
     });
 
-    payload.viewer.allUsers.edges =
-      payload.viewer.allUsers.edges
-        .filter(edge => edge.node.id !== deletedId);
+    deleteUserFromQuery(payload, deletedId);
 
     cache.writeQuery({
       data: payload,

@@ -4,15 +4,21 @@ import { Mutation } from 'react-apollo';
 
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import UserDetailsDialog from '../shared/user-details-dialog';
+import UserDetailsDialog from './user-dialog';
 
+import { GET_USERS } from '../queries';
 import { UPDATE_USER } from '../mutations';
+import { addUserToQuery, deleteUserFromQuery } from '../helpers';
 
 export class UpdateUser extends React.PureComponent {
   state = { isOpen: false };
 
   renderEditUserDialog = () =>
-    <Mutation mutation={UPDATE_USER} onCompleted={this.toggleDialog}>
+    <Mutation
+      mutation={UPDATE_USER}
+      update={this.updateQuery}
+      onCompleted={this.toggleDialog}
+    >
       {(mutation, { error }) => (
         <UserDetailsDialog
           error={Boolean(error)}
@@ -33,6 +39,45 @@ export class UpdateUser extends React.PureComponent {
         clientMutationId: user.id
       }
     }});
+  };
+
+  updateQuery = (cache, { data: { updateUser: { user } } }) => {
+    if (this.props.user.active === user.active) {
+      return;
+    }
+
+    let current = cache.readQuery({
+      query: GET_USERS,
+      variables: { active: this.props.user.active }
+    });
+
+    deleteUserFromQuery(current, user.id);
+
+    cache.writeQuery({
+      data: current,
+      query: GET_USERS,
+      variables: { active: this.props.user.active }
+    });
+
+    let next;
+
+    try {
+      next = cache.readQuery({
+        query: GET_USERS,
+        variables: { active: user.active }
+      });
+    } catch(err) {}
+
+    if (next) {
+      addUserToQuery(next, user);
+
+      cache.writeQuery({
+        data: next,
+        query: GET_USERS,
+        variables: { active: user.active }
+      });
+    }
+
   };
 
   toggleDialog = () => this.setState({ isOpen: !this.state.isOpen });
