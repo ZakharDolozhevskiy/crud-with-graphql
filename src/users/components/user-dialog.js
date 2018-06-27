@@ -17,7 +17,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export class UserDetailsDialog extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super();
     this.state = { ...props.data };
   }
 

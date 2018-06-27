@@ -19,18 +19,3 @@ export const GET_USERS = gql`
         }
     }
 `;
-
-export const GET_USER_DETAILS = gql`
-    query GetUsersDetails($id: ID) {
-        viewer {
-            User(id: $id) {
-                id
-                active
-                createdAt
-                email
-                name
-                updatedAt
-            }
-        }
-    }
-`;

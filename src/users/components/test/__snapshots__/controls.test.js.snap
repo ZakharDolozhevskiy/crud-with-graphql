@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Controls/> renders controls component in active state 1`] = `
+<header>
+  <Styled(CreateUser) />
+  <WithStyles(FormControlLabel)
+    classes={
+      Object {
+        "label": "active-user-label",
+      }
+    }
+    control={
+      <WithStyles(Switch)
+        checked={true}
+        color="primary"
+        onChange={[Function]}
+      />
+    }
+    label="Show only active users"
+  />
+</header>
+`;
+
+exports[`<Controls/> renders controls component in inactive state 1`] = `
+<header>
+  <Styled(CreateUser) />
+  <WithStyles(FormControlLabel)
+    classes={
+      Object {
+        "label": "active-user-label",
+      }
+    }
+    control={
+      <WithStyles(Switch)
+        checked={false}
+        color="primary"
+        onChange={[Function]}
+      />
+    }
+    label="Show only active users"
+  />
+</header>
+`;

@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserDetailsDialog/> renders dialog with error message 1`] = `
+<WithStyles(Dialog)
+  onClose={[Function]}
+  open={true}
+>
+  <WithStyles(DialogTitle)>
+    x
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <div>
+      <WithStyles(FormControl)>
+        <WithStyles(InputLabel)
+          htmlFor="edit-user-name"
+        >
+          Name
+        </WithStyles(InputLabel)>
+        <WithStyles(Input)
+          id="edit-user-name"
+          onChange={[Function]}
+          value="User"
+        />
+      </WithStyles(FormControl)>
+      <WithStyles(FormControl)
+        error={true}
+      >
+        <WithStyles(InputLabel)
+          htmlFor="edit-user-email"
+        >
+          E-mail
+        </WithStyles(InputLabel)>
+        <WithStyles(Input)
+          id="edit-user-email"
+          onChange={[Function]}
+          value="test@email"
+        />
+        <WithStyles(FormHelperText)>
+          Email address already in use
+        </WithStyles(FormHelperText)>
+      </WithStyles(FormControl)>
+      <WithStyles(FormControlLabel)
+        control={
+          <WithStyles(Checkbox)
+            checked={true}
+            color="primary"
+            onChange={[Function]}
+          />
+        }
+        label="Active user"
+      />
+      <WithStyles(DialogContentText)
+        className="timestamps"
+      >
+        <span>
+          Created: 
+          0
+        </span>
+        <span>
+          Updated: 
+          1
+        </span>
+      </WithStyles(DialogContentText)>
+    </div>
+  </WithStyles(DialogContent)>
+  <WithStyles(DialogActions)>
+    <WithStyles(Button)
+      color="primary"
+      onClick={[Function]}
+    >
+      Cancel
+    </WithStyles(Button)>
+    <WithStyles(Button)
+      color="primary"
+      onClick={[Function]}
+    >
+      Save
+    </WithStyles(Button)>
+  </WithStyles(DialogActions)>
+</WithStyles(Dialog)>
+`;
+
+exports[`<UserDetailsDialog/> renders dialog with user data 1`] = `
+<WithStyles(Dialog)
+  onClose={[Function]}
+  open={true}
+>
+  <WithStyles(DialogTitle)>
+    x
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <div>
+      <WithStyles(FormControl)>
+        <WithStyles(InputLabel)
+          htmlFor="edit-user-name"
+        >
+          Name
+        </WithStyles(InputLabel)>
+        <WithStyles(Input)
+          id="edit-user-name"
+          onChange={[Function]}
+          value="User"
+        />
+      </WithStyles(FormControl)>
+      <WithStyles(FormControl)>
+        <WithStyles(InputLabel)
+          htmlFor="edit-user-email"
+        >
+          E-mail
+        </WithStyles(InputLabel)>
+        <WithStyles(Input)
+          id="edit-user-email"
+          onChange={[Function]}
+          value="test@email"
+        />
+      </WithStyles(FormControl)>
+      <WithStyles(FormControlLabel)
+        control={
+          <WithStyles(Checkbox)
+            checked={true}
+            color="primary"
+            onChange={[Function]}
+          />
+        }
+        label="Active user"
+      />
+      <WithStyles(DialogContentText)
+        className="timestamps"
+      >
+        <span>
+          Created: 
+          0
+        </span>
+        <span>
+          Updated: 
+          1
+        </span>
+      </WithStyles(DialogContentText)>
+    </div>
+  </WithStyles(DialogContent)>
+  <WithStyles(DialogActions)>
+    <WithStyles(Button)
+      color="primary"
+      onClick={[Function]}
+    >
+      Cancel
+    </WithStyles(Button)>
+    <WithStyles(Button)
+      color="primary"
+      onClick={[Function]}
+    >
+      Save
+    </WithStyles(Button)>
+  </WithStyles(DialogActions)>
+</WithStyles(Dialog)>
+`;
