@@ -1,4 +1,4 @@
-# Users management app
+# Users management application
 
 The application written with React and Appolo client (GraphQL)
 
@@ -21,7 +21,7 @@ git clone https://github.com/ZakharDolozhevskiy/crud-with-graphql.git
 npm install
 ```
 
-3. Runs the app in development mode
+3. Run the app in development mode
 ```sh
 npm start
 ```
@@ -35,7 +35,7 @@ All development dependencies and used script described here
 ### Scripts
 
 * `npm start` - run application in development mode with live reloading and dev warnings in console
-* `npm test` - run tests (patters: *.test.js, tests folder)
+* `npm test` - run tests (patterns: *.test.js, tests folder)
 * `npm build` - create production ready build
 
 ### Main dependencies
@@ -47,7 +47,7 @@ All development dependencies and used script described here
 ## Testing
 
 React components covered with unit tests. Snapshots created for reusable components
-and components with GraphQL queries and mutations tested in one group.
+and components with GraphQL queries and mutations tested as one group.
 
 ### Testing tools
 
